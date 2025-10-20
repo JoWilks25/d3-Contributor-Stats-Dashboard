@@ -32,6 +32,24 @@ export function calculateKPIMetrics(): KPIMetrics {
     };
 }
 
+export interface ContributorCommitData {
+    username: string;
+    commits: number;
+}
+
+/**
+ * Get top contributors by commit count for the bar chart
+ */
+export function getTopContributorsByCommits(limit: number = 10): ContributorCommitData[] {
+    return data
+        .map(contributor => ({
+            username: contributor.username,
+            commits: contributor.alltime.commits
+        }))
+        .sort((a, b) => b.commits - a.commits)
+        .slice(0, limit);
+}
+
 /**
  * Format large numbers with appropriate suffixes (K, M, etc.)
  */
