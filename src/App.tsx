@@ -1,10 +1,12 @@
 import DarkModeToggle from './components/DarkModeToggle';
 import KPICard from './components/KPICard';
-import { calculateKPIMetrics, formatNumber } from './utils/dataCalculations';
+import BarChart from './components/BarChart';
+import { calculateKPIMetrics, formatNumber, getTopContributorsByCommits } from './utils/dataCalculations';
 import { Users, GitCommit, Plus, Minus } from 'lucide-react';
 
 export default function App() {
   const kpiMetrics = calculateKPIMetrics();
+  const topContributors = getTopContributorsByCommits(10);
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 dark:bg-slate-900 dark:text-slate-100">
@@ -52,14 +54,12 @@ export default function App() {
 
         {/* Main Content Area */}
         <main className="space-y-8">
-          <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm border border-slate-200 dark:border-slate-700">
-            <h2 className="text-lg font-semibold text-slate-900 dark:text-slate-100 mb-4">
-              Contributor Statistics
-            </h2>
-            <p className="text-slate-600 dark:text-slate-400">
-              Charts and detailed analytics will be displayed here.
-            </p>
-          </div>
+          <BarChart
+            data={topContributors}
+            title="Contributor Commit Statistics"
+            width={800}
+            height={400}
+          />
         </main>
       </div>
     </div>
