@@ -47,7 +47,7 @@ export default function BarChart({ data, width = 500, height = 200 }: BarChartPr
     }, [data, width, height]);
 
     return (
-        <div className="w-full max-w-xl rounded border border-slate-200 p-4">
+        <div className="w-full max-w-xl rounded border border-slate-200 dark:border-slate-700 p-4 bg-white dark:bg-slate-800">
             <svg ref={ref} className="w-full h-auto" />
         </div>
     );
