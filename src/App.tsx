@@ -1,6 +1,8 @@
 import DarkModeToggle from './components/DarkModeToggle';
 import KPICard from './components/KPICard';
 import BarChart from './components/BarChart';
+import TopContributorsList from './components/TopContributorsList';
+import CommitBreakdownChart from './components/CommitBreakdownChart';
 import { calculateKPIMetrics, formatNumber, getTopContributorsByCommits } from './utils/dataCalculations';
 import { Users, GitCommit, Plus, Minus } from 'lucide-react';
 
@@ -60,6 +62,12 @@ export default function App() {
             width={800}
             height={400}
           />
+
+          {/* Bottom Row - Two Column Layout */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <TopContributorsList contributors={topContributors} />
+            <CommitBreakdownChart />
+          </div>
         </main>
       </div>
     </div>
