@@ -15,11 +15,11 @@ export default function TopContributorsList({
     title = "Top 10 Contributors"
 }: TopContributorsListProps) {
     return (
-        <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm border border-slate-200 dark:border-slate-700 transition-colors">
+        <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm border border-slate-200 dark:border-slate-700 transition-colors h-full flex flex-col">
             <h3 className="text-lg font-semibold text-slate-900 dark:text-slate-100 mb-4">
                 {title}
             </h3>
-            <div className="space-y-3">
+            <div className="space-y-3 flex-1 overflow-y-auto">
                 {contributors.map((contributor, index) => (
                     <div
                         key={contributor.username}

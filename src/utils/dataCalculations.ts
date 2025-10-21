@@ -50,6 +50,34 @@ export function getTopContributorsByCommits(limit: number = 10): ContributorComm
         .slice(0, limit);
 }
 
+export interface CommitBreakdownData {
+    additions: number;
+    deletions: number;
+    additionsPercentage: number;
+    deletionsPercentage: number;
+    totalCommits: number;
+}
+
+/**
+ * Calculate commit breakdown data for the doughnut chart
+ */
+export function getCommitBreakdownData(): CommitBreakdownData {
+    const kpiMetrics = calculateKPIMetrics();
+    const { totalAdditions, totalDeletions, totalCommits } = kpiMetrics;
+
+    const total = totalAdditions + totalDeletions;
+    const additionsPercentage = total > 0 ? Math.round((totalAdditions / total) * 100) : 0;
+    const deletionsPercentage = total > 0 ? Math.round((totalDeletions / total) * 100) : 0;
+
+    return {
+        additions: totalAdditions,
+        deletions: totalDeletions,
+        additionsPercentage,
+        deletionsPercentage,
+        totalCommits
+    };
+}
+
 /**
  * Format large numbers with appropriate suffixes (K, M, etc.)
  */
